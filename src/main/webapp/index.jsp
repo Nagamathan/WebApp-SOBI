@@ -18,6 +18,11 @@ body {font-family: 	Georgia, Garamond, serif;
     color: red;
   }
   
+  #header {
+   background:#1f618d;
+   padding:10px;
+}
+  
 /* Full-width input fields */
 input[type=text], input[type=password] {
   width: 100%;
@@ -60,6 +65,9 @@ button:hover {
 img.avatar {
   width: 40%;
   border-radius: 50%;
+}
+img.srvc {
+  width: 40%;
 }
 
 .container {
@@ -149,11 +157,13 @@ bottom:5px;
 </style>
 </head>
 <body>
+<div id="header">
   <center><h1>Service Operations & Business Intelligence</h1>
+</div>  
    <br><br><br>
-	<h4>Click on the below to login</h4>
+	<center><h4>Click on below to login</h4>
 	
-	<button onclick="document.getElementById('id01').style.display='block'" style="width:20%;">Login</button>
+	<button onclick="document.getElementById('id01').style.display='block'" style="width:20%;"><b>Login</b></button>
 <br>
  <h3> <% 
    if(session.getAttribute("err_msg")!=null)
@@ -164,6 +174,9 @@ bottom:5px;
 	session.removeAttribute("err_msg");
 	%>
 </h3>
+<br><br><br><br>
+<img src="ServiceOps.jpg" alt="Srvc" class="Srvc">
+
 <div id="id01" class="modal">
   
   <form class="modal-content animate" action="Login" method="Post">
@@ -179,7 +192,7 @@ bottom:5px;
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
         
-      <button type="submit">Login</button>
+      <button type="submit"><b>Login</b></button>
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>
