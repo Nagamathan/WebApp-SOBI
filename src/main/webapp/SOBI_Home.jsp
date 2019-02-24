@@ -75,12 +75,12 @@ input[type=submit] {
 	<div id="body" align="right">
 		<form action="Logout">  
 		<b>Hello <% out.print(session.getAttribute("username"));%>&nbsp&nbsp
-		<u><input type="submit" value="log out"/></u>&nbsp&nbsp</b>
+		<u><input type="submit" name="logoutbtn" value="log out"/></u>&nbsp&nbsp</b>
 		</form>
 		
 		<h4 align="left"> <I>&nbsp&nbspIntroduction to Service Operations<br></I>
 		<br>&nbsp&nbsp&nbsp&nbsp
-		<center><iframe width="560" height="315" src="https://www.youtube.com/embed/9HHwZ7vFe7Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		<center><iframe width="560" height="315" id="video" title="Intro" src="https://www.youtube.com/embed/9HHwZ7vFe7Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 		</h4>
 	</div>
 	<div id="footer">

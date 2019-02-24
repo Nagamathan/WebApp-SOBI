@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<title>Service Ops</title>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -163,7 +164,7 @@ bottom:5px;
    <br><br><br>
 	<center><h4>Click on below to login</h4>
 	
-	<button onclick="document.getElementById('id01').style.display='block'" style="width:20%;"><b>Login</b></button>
+	<button onclick="document.getElementById('id01').style.display='block'" style="width:20%;" name="btn"><b>Login</b></button>
 <br>
  <h3> <% 
    if(session.getAttribute("err_msg")!=null)
@@ -192,7 +193,7 @@ bottom:5px;
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
         
-      <button type="submit"><b>Login</b></button>
+      <button type="submit" name="loginbtn"><b>Login</b></button>
       <label>
         <input type="checkbox" checked="checked" name="remember"> Remember me
       </label>
