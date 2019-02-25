@@ -26,9 +26,10 @@ pipeline {
 		stage('Email Notification'){
 		
 			steps {
-				   emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
-                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+				   mail bcc: '', body: '''Hi 
+				   WebApp-SOBI Build is completed.
+					Thanks
+				Sobiadmin''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job - Build Successful', to: 'sobihackathon@gmail.com'
             }
 			
         }
@@ -45,9 +46,10 @@ pipeline {
 		stage('Test Email Notification'){
 		
 			steps {
-				   emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
-                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
-                subject: "Jenkins Test ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+				  mail bcc: '', body: '''Hi 
+				   WebApp-SOBI Test execution is completed.
+					Thanks
+				Sobiadmin''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job - Testing Execution Successful', to: 'sobihackathon@gmail.com'
             }
 			
         }		
@@ -55,7 +57,7 @@ pipeline {
 
 			steps {
 
-				input "Proceed with Deployment environment. Did you approve?"
+				input "Proceed with Deploying the code to Target Environment. Do you approve?"
 
 			}
 
@@ -67,10 +69,23 @@ pipeline {
                 echo 'Deployment Started'
 				echo 'Deploying the War files to tomcat server http://localhost:9898/'
                 bat label: '', script: '''echo %CD%
+				echo %date%
                 copy target\\*.war D:\\Users\\Umakiran\\Desktop\\Development\\webapps\\'''
                   }
 
         }
+		stage('Deploy Email Notification'){
+		
+			steps {
+				  mail bcc: '', body: '''Hi User,
+				  
+				   WebApp-SOBI Deployment is Successful.
+				   
+					Thanks
+				Sobiadmin''', cc: '', from: '', replyTo: '', subject: 'Jenkins Job - Deployment Successful', to: 'sobihackathon@gmail.com'
+            }
+			
+        }		
 
     }
 
