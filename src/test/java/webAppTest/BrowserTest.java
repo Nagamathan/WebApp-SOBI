@@ -3,7 +3,13 @@ package webAppTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 import junit.framework.Assert;
 
@@ -19,24 +25,43 @@ public class BrowserTest {
 	}*/
 	
 	public static WebDriver driver=null;
+	public static  ExtentHtmlReporter htmlReporter ;
+	public static  ExtentReports extent;
+	public static  ExtentTest test ;
+
+	@BeforeSuite
+	public void beforeSuite() {
+	 htmlReporter = new ExtentHtmlReporter("test-output/extent.html");
+	    
+     // create ExtentReports and attach reporter(s)
+     extent = new ExtentReports();
+     extent.attachReporter(htmlReporter);
+
+     // creates a toggle for the given test, adds all log events under it    
+      test = extent.createTest("SOBI Web Application Test", "This is a test to validate Service Ops Web Application");
+      test.log(Status.INFO, "Starting the test");
+	}
 	
 	@Test (priority=1)
 	public static void launchBrowser() {
 		String projectPath=System.getProperty("user.dir");
 		System.setProperty("webdriver.gecko.driver" , projectPath+"\\drivers\\geckodriver\\geckodriver.exe");
 	    driver=new FirefoxDriver();
+	    test.pass("Firefox Browser Launched");
 	}
 	
 	@Test (priority=2)
 	public static void launchApplication() {
 		driver.get("http://localhost:9090/WebApp-SOBI/index.jsp");
 		Assert.assertEquals("Service Ops",driver.getTitle());	
+		test.pass("Navigated to Service Ops URL");
 	}
 	@Test (priority=3) 
 	public static void launchLogin() { 
 		
 		driver.findElement(By.name("btn")).click();
 		Assert.assertTrue(driver.findElement(By.name("loginbtn")).isDisplayed());
+		test.pass("Login Form Launched");
 		
 	}
 	@Test (priority=4) 
@@ -46,6 +71,7 @@ public class BrowserTest {
 		driver.findElement(By.name("psw")).sendKeys("admin123");
 		driver.findElement(By.name("loginbtn")).click();
 		Assert.assertEquals("SOBI Home Page",driver.getTitle());
+		test.pass("Login is successfull");
 		//Assert.assertTrue(driver.findElement(By.name("loginbtn")).isDisplayed());
 		try {
 			Thread.sleep(3000);
@@ -57,6 +83,7 @@ public class BrowserTest {
 	@Test (priority=5) 
 	public static void videoValidation() {
 		driver.findElement(By.id("video")).click();
+		test.pass("Play video on the page");
 		//Assert.assertTrue(driver.findElement(By.name("loginbtn")).isDisplayed());
 		try {
 			Thread.sleep(5000);
@@ -69,6 +96,7 @@ public class BrowserTest {
 	public static void logoutValidation() {
 		driver.findElement(By.name("logoutbtn")).click();
 		Assert.assertEquals("Service Ops",driver.getTitle());
+		test.pass("Logout validation");
 		//Assert.assertTrue(driver.findElement(By.name("loginbtn")).isDisplayed());
 		try {
 			Thread.sleep(3000);
@@ -81,6 +109,8 @@ public class BrowserTest {
 	@Test (priority=7)
 	public static void closeBrowser() {
 		driver.close();
+		test.pass("Browser closed");
+		extent.flush();
 		
 	}
 }
