@@ -67,7 +67,7 @@ pipeline {
                 echo 'Deployment Started'
 				echo 'Deploying the War files to tomcat server http://localhost:9898/'
                 bat label: '', script: '''echo %CD%
-                copy target\\*.war %DEPLOY_HOME%\\webapps\\'''
+                copy target\\*.war D:\\Users\\Umakiran\\Desktop\\Development\\webapps\\'''
                   }
 
         }
