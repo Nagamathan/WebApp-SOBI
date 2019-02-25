@@ -66,7 +66,7 @@ input[type=submit] {
 %>
 	<div id="header">
 	<marquee behavior="scroll" direction="left">
-		<center><h1>Welcome to Service Operations & Business Intelligence</h1>
+		<center><h1>Welcome to Service Operations and Business Intelligence</h1>
 	</marquee>
 	</div>
 
