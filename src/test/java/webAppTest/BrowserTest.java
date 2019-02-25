@@ -112,5 +112,6 @@ public class BrowserTest {
 		test.pass("Browser closed");
 		extent.flush();
 		
+		
 	}
 }
