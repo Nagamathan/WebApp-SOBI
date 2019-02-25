@@ -1,2 +1,2 @@
 # WebApp-SOBI
-service Ops
+service Ops web app
