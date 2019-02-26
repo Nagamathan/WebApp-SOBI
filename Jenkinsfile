@@ -53,7 +53,7 @@ pipeline {
             }
 			
         }		
-		stage('Sanity check') {
+		stage('Production Approval') {
 
 			steps {
 
