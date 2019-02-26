@@ -16,7 +16,7 @@ pipeline {
 
             steps {
 
-                echo 'Building'
+                echo 'Building '
                 bat label: '', script: 'mvn clean package'
 
             }
