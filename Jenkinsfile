@@ -23,7 +23,7 @@ pipeline {
             
 
         }
-		stage('Email Notification'){
+		stage('Build Email Notification'){
 		
 			steps {
 				   mail bcc: '', body: '''Hi 
